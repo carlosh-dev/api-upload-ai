@@ -8,8 +8,30 @@ POST http://localhost:3333/video
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="example.mp3"
+Content-Disposition: form-data; name="file"; filename="audio-test.mp3"
 Content-Type: image/png
 
 < ./example.mp3
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+# @name create-transcription
+POST http://localhost:3333/videos/32851beb-a622-4bc9-ac77-7646dd202a40/transcription
+Content-Type: application/json
+
+{
+  "prompt": "feliz aniversário, datas comemorativas"
+}
+
+###
+
+# @name generate-ai-completion
+POST http://localhost:3333/ai/complete
+Content-Type: application/json
+
+{
+  "videoId": "32851beb-a622-4bc9-ac77-7646dd202a40",
+  "templete": "Gere um resumo sucinto da transcrição do vídeo informada a seguir: ```{transcription}```",
+  "temperature": 0.5
+}
